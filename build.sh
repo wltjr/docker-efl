@@ -107,6 +107,8 @@ apt-get install -y \
 	libxinerama-dev \
 	libxkbcommon0 \
 	libxkbcommon-dev \
+	libxkbcommon-x11-0 \
+	libxkbcommon-x11-dev \
 	libxkbfile-dev \
 	libxrandr-dev \
 	libxss-dev \

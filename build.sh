@@ -20,6 +20,7 @@ apt-get install -y \
 	dpkg-dev \
 	doxygen \
 	git \
+	gnutls-bin \
 	imagemagick \
 	libasound2-dev \
 	libavahi-client3 \
@@ -46,6 +47,8 @@ apt-get install -y \
 	libgs9-common \
 	libgstreamer1.0-dev \
 	libgstreamer-plugins-base1.0-dev \
+	libgnutls30 \
+	libgnutls28-dev \
 	libharfbuzz-dev \
 	libharfbuzz-gobject0 \
 	libharfbuzz-icu0 \

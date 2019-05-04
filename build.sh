@@ -37,7 +37,6 @@ apt-get install -y \
 	libcupsfilters1 \
 	libcupsimage2 \
 	libdbus-1-dev \
-	libelogind-dev \
 	libflac-dev \
 	libfontconfig1-dev \
 	libfreetype6-dev \
@@ -56,7 +55,6 @@ apt-get install -y \
 	libinput-dev \
 	libjbig2dec0 \
 	libjpeg-dev \
-	liblinearmath2.81 \
 	libluajit-5.1-2 \
 	libluajit-5.1-common \
 	libluajit-5.1-dev \
@@ -67,15 +65,15 @@ apt-get install -y \
 	libpam0g-dev \
 	libpaper1 \
 	libpaper-utils \
-	libpoppler44 \
-	libpoppler-cpp0 \
+	libpoppler73 \
+	libpoppler-cpp0v5 \
 	libpoppler-cpp-dev \
 	libpoppler-dev \
 	libpoppler-private-dev \
 	libproxy-dev \
 	libpulse-dev \
 	libpulse-mainloop-glib0 \
-	libraw9 \
+	libraw16 \
 	libraw-dev \
 	librsvg2-dev \
 	libscim-dev \
@@ -96,7 +94,7 @@ apt-get install -y \
 	libvorbis-dev \
 	libvorbisenc2 \
 	libvorbisfile3 \
-	libwebp5 \
+	libwebp6 \
 	libwebp-dev \
 	libxcb-keysyms1-dev \
 	libxcursor-dev \
@@ -123,15 +121,7 @@ apt-get install -y \
 	python3-six \
 	python3-urllib3 \
 	python3-wheel \
-	python-chardet-whl \
-	python-colorama-whl \
-	python-distlib-whl \
-	python-html5lib-whl \
 	python-pip-whl \
-	python-requests-whl \
-	python-setuptools-whl \
-	python-six-whl \
-	python-urllib3-whl \
 	rpm \
 	texlive-base \
 	udev \

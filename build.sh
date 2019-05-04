@@ -226,5 +226,4 @@ tar --strip=1 -xJf efl.txz
 	--with-x \
 	--with-x11=xlib
 
-make -j${CPUC}
-make install
+make -j${CPUC} && make install

@@ -223,4 +223,4 @@ tar --strip=1 -xJf efl.txz
 	--with-x11=xlib
 
 make -j${CPUC}
-make silent_install
+make install

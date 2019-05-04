@@ -130,7 +130,7 @@ apt-get install -y \
 
 pip3 install --user meson
 
-curl -L -o efl.txz -L \"${EFL_URL}"
+curl -L -o efl.txz -L "${EFL_URL}"
 tar --strip=1 -xJf efl.txz
 
 ./configure \

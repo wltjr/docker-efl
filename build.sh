@@ -140,6 +140,7 @@ pip3 install --user meson
 curl -L -o efl.txz -L "${EFL_URL}"
 tar --strip=1 -xJf efl.txz
 
+#	--enable-elogind \
 ./configure \
 	--prefix=/usr \
 	--mandir=/usr/share/man \
@@ -183,7 +184,6 @@ tar --strip=1 -xJf efl.txz
 	--enable-audio \
 	--enable-drm \
 	--enable-egl \
-	--enable-elogind \
 	--enable-elput \
 	--enable-fontconfig \
 	--enable-gl-drm \

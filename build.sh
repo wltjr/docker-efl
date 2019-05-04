@@ -42,6 +42,8 @@ apt-get install -y \
 	libfontconfig1-dev \
 	libfreetype6-dev \
 	libfribidi-dev \
+	libgcrypt20 \
+	libgcrypt20-dev \
 	libgif-dev \
 	libgs9 \
 	libgs9-common \

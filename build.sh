@@ -138,6 +138,8 @@ apt-get install -y \
 pip3 install --user meson
 
 curl -L -o /tmp/efl.txz -L "${EFL_URL}"
+mkdir /build
+cd /build
 tar --strip=1 -xJf /tmp/efl.txz
 
 #	--enable-elogind \

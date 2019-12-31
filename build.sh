@@ -207,4 +207,4 @@ meson \
 	/build \
 	/src
 
-ninja-build -C /build && ninja-build -C install
+ninja -C /build && ninja -C install

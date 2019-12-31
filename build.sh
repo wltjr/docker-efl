@@ -137,14 +137,17 @@ apt-get install -y \
 
 pip3 install --user meson
 
+# download EFL, unpack into /src, compile will take place in /build
 curl -L -o /tmp/efl.txz -L "${EFL_URL}"
 mkdir /build /src
 cd /src
 tar --strip=1 -xJf /tmp/efl.txz
 cd ../
+rm -v /tmp/efl.txz
 
+# configure
 meson \
-	--buildtype plain \
+	--buildtype debug \
 	--libdir lib64 \
 	--localstatedir /var/lib \
 	--prefix /usr \
@@ -207,4 +210,8 @@ meson \
 	/build \
 	/src
 
+# compile and install
 ninja -C /build && ninja -C /build install
+
+# clean up after build
+rm -r /build /src

@@ -138,9 +138,10 @@ apt-get install -y \
 pip3 install --user meson
 
 curl -L -o /tmp/efl.txz -L "${EFL_URL}"
-mkdir /build
-cd /build
+mkdir /build /src
+cd /src
 tar --strip=1 -xJf /tmp/efl.txz
+cd ../
 
 meson \
 	--buildtype plain \
@@ -202,7 +203,8 @@ meson \
 	-Delogind=false \
 	-Ddictionaries-hyphen-dir=/usr/share/hyphen/ \
 	-Delementary-base-dir=.elementary \
-	-Dinstall-eo-files=false
-
+	-Dinstall-eo-files=false \
+	/build \
+	/src
 
 make -j${CPUC} && make install

@@ -207,4 +207,4 @@ meson \
 	/build \
 	/src
 
-make -j${CPUC} && make install
+ninja-build -C /build && ninja-build -C install

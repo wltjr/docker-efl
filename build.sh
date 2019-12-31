@@ -142,90 +142,67 @@ mkdir /build
 cd /build
 tar --strip=1 -xJf /tmp/efl.txz
 
-#	--enable-elogind \
-./configure \
-	--prefix=/usr \
-	--mandir=/usr/share/man \
-	--infodir=/usr/share/info \
-	--datadir=/usr/share \
-	--sysconfdir=/etc \
-	--localstatedir=/var/lib \
-	--docdir=/usr/share/doc/efl \
-	--htmldir=/usr/share/doc/efl/html \
-	--libdir=/usr/lib64 \
-	--disable-avahi \
-	--disable-cxx-bindings \
-	--disable-dependency-tracking \
-	--disable-doc \
-	--disable-fb \
-	--disable-fribidi \
-	--disable-gesture \
-	--disable-gstreamer \
-	--disable-gstreamer1 \
-	--disable-ibus \
-	--disable-image-loader-tga \
-	--disable-libraw \
-	--disable-lua-old \
-	--disable-neon \
-	--disable-pixman \
-	--disable-pixman-font \
-	--disable-pixman-image \
-	--disable-pixman-image-scale-sample \
-	--disable-pixman-line \
-	--disable-pixman-poly \
-	--disable-pixman-rect \
-	--disable-scim \
-	--disable-sdl \
-	--disable-silent-rules \
-	--disable-static \
-	--disable-systemd \
-	--disable-tizen \
-	--disable-tslib \
-	--disable-xim \
-	--disable-xpresent \
-	--enable-audio \
-	--enable-drm \
-	--enable-egl \
-	--enable-elput \
-	--enable-fontconfig \
-	--enable-gl-drm \
-	--enable-harfbuzz \
-	--enable-image-loader-bmp \
-	--enable-image-loader-eet \
-	--enable-image-loader-generic \
-	--enable-image-loader-gif \
-	--enable-image-loader-ico \
-	--enable-image-loader-ico \
-	--enable-image-loader-jp2k \
-	--enable-image-loader-jpeg \
-	--enable-image-loader-pmaps \
-	--enable-image-loader-png \
-	--enable-image-loader-psd \
-	--enable-image-loader-tga \
-	--enable-image-loader-tiff \
-	--enable-image-loader-wbmp \
-	--enable-image-loader-wbmp \
-	--enable-image-loader-webp \
-	--enable-image-loader-xpm \
-	--enable-libmount \
-	--enable-librsvg \
-	--enable-multisense \
-	--enable-nls \
-	--enable-physics \
-	--enable-poppler \
-	--enable-pulseaudio \
-	--enable-spectre \
-	--enable-threads \
-	--enable-v4l2 \
-	--enable-wayland \
-	--enable-xine \
-	--enable-xinput22 \
-	--with-crypto=gnutls \
-	--with-glib=yes \
-	--with-opengl=es \
-	--with-profile=release \
-	--with-tests=none \
-	--with-x \
-	--with-x11=xlib
+meson \
+	--buildtype plain \
+	--libdir lib64 \
+	--localstatedir /var/lib \
+	--prefix /usr \
+	--sysconfdir /etc \
+	--wrap-mode nodownload \
+	-Dcrypto=gnutls \
+	-Dopengl=es-egl \
+	-Demotion-loaders-disabler=gstreamer,gstreamer1,libvlc \
+	-Devas-loaders-disabler=json,xcf,dds,tga,raw \
+	-Decore-imf-loaders-disabler=ibus,scim,xim \
+	-Demotion-generic-loaders-disabler=vlc \
+	-Daudio=true \
+	-Davahi=false \
+	-Dx11=true \
+	-Dfb=false \
+	-Dsdl=false \
+	-Dwl=true \
+	-Dbuffer=false \
+	-Ddrm=true \
+	-Dcocoa=false \
+	-Dphysics=true \
+	-Deeze=true \
+	-Deina-magic-debug=true \
+	-Ddebug-threads=false \
+	-Dbuild-examples=false \
+	-Dbuild-tests=false \
+	-Dglib=true \
+	-Dg-mainloop=false \
+	-Dsystemd=true \
+	-Dpulseaudio=true \
+	-Dnetwork-backend=none \
+	-Dxpresent=false \
+	-Dxgesture=false \
+	-Dxinput2=true \
+	-Dxinput22=true \
+	-Dtslib=false \
+	-Deject-path=detect \
+	-Dmount-path=detect \
+	-Dunmount-path=detect \
+	-Devas-modules=shared \
+	-Dharfbuzz=true \
+	-Dfribidi=false \
+	-Dfontconfig=true \
+	-Dedje-sound-and-video=true \
+	-Dpixman=false \
+	-Dhyphen=false \
+	-Dembedded-lz4=false \
+	-Dlibmount=true \
+	-Dvnc-server=false \
+	-Dv4l2=true \
+	-Dwl-deprecated=false \
+	-Ddrm-deprecated=false \
+	-Dnls=true \
+	-Dmono-beta=false \
+	-Dnative-arch-optimization=true \
+	-Delogind=false \
+	-Ddictionaries-hyphen-dir=/usr/share/hyphen/ \
+	-Delementary-base-dir=.elementary \
+	-Dinstall-eo-files=false
+
 
 make -j${CPUC} && make install

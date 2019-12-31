@@ -173,7 +173,7 @@ meson \
 	-Dbuild-tests=false \
 	-Dglib=true \
 	-Dg-mainloop=false \
-	-Dsystemd=true \
+	-Dsystemd=false \
 	-Dpulseaudio=true \
 	-Dnetwork-backend=none \
 	-Dxpresent=false \

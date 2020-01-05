@@ -135,7 +135,7 @@ apt-get install -y \
 	unity-greeter-badges \
 	valgrind
 
-pip3 install --user meson
+pip3 install meson
 
 # download EFL, unpack into /src, compile will take place in /build
 curl -L -o /tmp/efl.txz -L "${EFL_URL}"

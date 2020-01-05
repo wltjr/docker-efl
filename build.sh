@@ -148,7 +148,7 @@ rm -v /tmp/efl.txz
 # configure
 meson \
 	--buildtype debug \
-	--libdir lib64 \
+	--libdir lib \
 	--localstatedir /var/lib \
 	--prefix /usr \
 	--sysconfdir /etc \

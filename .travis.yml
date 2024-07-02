@@ -1,5 +1,0 @@
-services:
-  - docker
-
-install:
-  - docker build -t efl .

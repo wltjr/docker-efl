@@ -1,14 +1,15 @@
 #!/bin/bash
-# Copyright 2019 Obsidian-Studios, Inc.
-# Author William L. Thomson Jr.
-#        wlt@o-sinc.com
+# Copyright 2024 William L. Thomson Jr. <w@wltjr.com>
 #
 # Distributed under the terms of The GNU Public License v3.0 (GPLv3)
 
 CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 PATH="~/.local/bin:${PATH}"
 
-apt update
+# update base system
+apt-get update && apt-get upgrade -y --no-install-recommends
+
+# install packages
 apt-get install -y \
 	automake \
 	autopoint \
@@ -17,6 +18,7 @@ apt-get install -y \
 	check \
 	clang \
 	cmake \
+	curl \
 	dpkg-dev \
 	doxygen \
 	git \
@@ -33,9 +35,8 @@ apt-get install -y \
 	libc6 \
 	libc6-dev \
 	libc-dev-bin \
-	libcogl-gles2-dev \
 	libcups2 \
-	libcupsfilters1 \
+	libcupsfilters2t64 \
 	libcupsimage2 \
 	libdbus-1-dev \
 	libflac-dev \
@@ -45,12 +46,11 @@ apt-get install -y \
 	libgcrypt20 \
 	libgcrypt20-dev \
 	libgif-dev \
-	libgs9 \
-	libgs9-common \
+	libgles-dev \
+	libgs10 \
+	libgs10-common \
 	libgstreamer1.0-dev \
 	libgstreamer-plugins-base1.0-dev \
-	libgnutls30 \
-	libgnutls28-dev \
 	libharfbuzz-dev \
 	libharfbuzz-gobject0 \
 	libharfbuzz-icu0 \
@@ -70,7 +70,7 @@ apt-get install -y \
 	libpam0g-dev \
 	libpaper1 \
 	libpaper-utils \
-	libpoppler73 \
+	libpoppler134 \
 	libpoppler-cpp0v5 \
 	libpoppler-cpp-dev \
 	libpoppler-dev \
@@ -78,7 +78,7 @@ apt-get install -y \
 	libproxy-dev \
 	libpulse-dev \
 	libpulse-mainloop-glib0 \
-	libraw16 \
+	libraw23t64 \
 	libraw-dev \
 	librsvg2-dev \
 	libscim-dev \
@@ -99,7 +99,7 @@ apt-get install -y \
 	libvorbis-dev \
 	libvorbisenc2 \
 	libvorbisfile3 \
-	libwebp6 \
+	libwebp7 \
 	libwebp-dev \
 	libxcb-keysyms1-dev \
 	libxcursor-dev \
@@ -115,50 +115,51 @@ apt-get install -y \
 	libxtst-dev \
 	linux-tools-common \
 	lua5.2 \
+	meson \
 	ninja-build \
+	openssl \
 	poppler-data \
 	python3-chardet \
 	python3-colorama \
 	python3-distlib \
 	python3-html5lib \
-	python3-pip \
 	python3-pkg-resources \
 	python3-requests \
 	python3-setuptools \
 	python3-six \
 	python3-urllib3 \
 	python3-wheel \
-	python-pip-whl \
 	rpm \
 	texlive-base \
 	udev \
 	unity-greeter-badges \
 	valgrind
 
-pip3 install meson
-
-# download EFL, unpack into /src, compile will take place in /build
+# download EFL, unpack into src, compile will take place in build
 curl -L -o /tmp/efl.txz -L "${EFL_URL}"
-mkdir /build /src
-cd /src
+mkdir /tmp/efl
+cd /tmp/efl
+mkdir build src
+cd src
 tar --strip=1 -xJf /tmp/efl.txz
 cd ../
 rm -v /tmp/efl.txz
 
 # configure
-meson \
+meson setup \
 	--buildtype debug \
-	--libdir lib \
+	--libdir lib64 \
 	--localstatedir /var/lib \
 	--prefix /usr \
 	--sysconfdir /etc \
 	--wrap-mode nodownload \
-	-Dcrypto=gnutls \
+	--build.pkg-config-path /usr/share/pkgconfig \
+	--pkg-config-path /usr/share/pkgconfig \
+	-Dcrypto=openssl \
 	-Dopengl=es-egl \
-	-Demotion-loaders-disabler=gstreamer,gstreamer1,libvlc \
-	-Devas-loaders-disabler=json,xcf,dds,tga,raw \
+	-Dbindings= \
+	-Devas-loaders-disabler=json,xcf,dds,heif,tga,avif,jxl,raw \
 	-Decore-imf-loaders-disabler=ibus,scim,xim \
-	-Demotion-generic-loaders-disabler=vlc \
 	-Daudio=true \
 	-Davahi=false \
 	-Dx11=true \
@@ -176,18 +177,17 @@ meson \
 	-Dbuild-tests=false \
 	-Dglib=true \
 	-Dg-mainloop=false \
-	-Dsystemd=false \
+	-Dgstreamer=true \
 	-Dpulseaudio=true \
 	-Dnetwork-backend=none \
 	-Dxpresent=false \
-	-Dxgesture=false \
+	-Dinput=true \
 	-Dxinput2=true \
 	-Dxinput22=true \
 	-Dtslib=false \
 	-Deject-path=detect \
 	-Dmount-path=detect \
 	-Dunmount-path=detect \
-	-Devas-modules=shared \
 	-Dharfbuzz=true \
 	-Dfribidi=false \
 	-Dfontconfig=true \
@@ -203,15 +203,12 @@ meson \
 	-Dnls=true \
 	-Dmono-beta=false \
 	-Dnative-arch-optimization=true \
-	-Delogind=false \
+	-Dsystemd=true \
 	-Ddictionaries-hyphen-dir=/usr/share/hyphen/ \
 	-Delementary-base-dir=.elementary \
 	-Dinstall-eo-files=false \
-	/build \
-	/src
+	build \
+	src
 
-# compile and install
-ninja -C /build && ninja -C /build install
-
-# clean up after build
-rm -r /build /src
+# compile, install, and clean up after build
+ninja -C build -j${CPUC} && ninja -C build install && rm -r /tmp/efl

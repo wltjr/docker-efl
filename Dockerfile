@@ -1,8 +1,8 @@
-FROM ubuntu:18.04
+FROM ubuntu:noble
 
-LABEL maintainer="wlt@o-sinc.com"
+LABEL maintainer="w@wltjr.com"
 
-ENV EFL_URL="https://download.enlightenment.org/rel/libs/efl/efl-1.23.3.tar.xz"
+ENV EFL_URL="https://download.enlightenment.org/rel/libs/efl/efl-1.27.0.tar.xz"
 
 COPY build.sh ./build.sh
 

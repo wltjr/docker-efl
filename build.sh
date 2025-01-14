@@ -206,6 +206,7 @@ meson setup \
 	-Dsystemd=true \
 	-Ddictionaries-hyphen-dir=/usr/share/hyphen/ \
 	-Delementary-base-dir=.elementary \
+	-Dlua-interpreter=luajit \
 	-Dinstall-eo-files=false \
 	build \
 	src

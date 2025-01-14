@@ -4,7 +4,7 @@
 
 Docker Enlightenment Foundation Libraries (EFL) development environment
 
-[Latest](https://hub.docker.com/r/obsidianstudios/efl/tags)
+[Latest](https://hub.docker.com/r/wltjr/efl/tags)
 
 ## Docker Pull Command
 docker pull wltjr/docker-efl

@@ -7,10 +7,10 @@ CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 PATH="~/.local/bin:${PATH}"
 
 # update base system
-apt-get update && apt-get upgrade -y --no-install-recommends
+apt-get -qq update && apt-get -qq upgrade -y --no-install-recommends
 
 # install packages
-apt-get install -y \
+apt-get -qq install -y \
 	automake \
 	autopoint \
 	build-essential \

@@ -148,13 +148,10 @@ rm -v /tmp/efl.txz
 # configure
 meson setup \
 	--buildtype debug \
-	--libdir lib64 \
 	--localstatedir /var/lib \
 	--prefix /usr \
 	--sysconfdir /etc \
 	--wrap-mode nodownload \
-	--build.pkg-config-path /usr/share/pkgconfig \
-	--pkg-config-path /usr/share/pkgconfig \
 	-Dcrypto=openssl \
 	-Dopengl=es-egl \
 	-Dbindings= \

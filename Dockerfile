@@ -128,8 +128,10 @@ RUN apt-get -qq install -y \
     xorg \
     xserver-xorg-video-dummy
 
+# download, build, and install efl
 COPY build.sh ./build.sh
+RUN chmod +x ./build.sh && sync && ./build.sh
 
-RUN chmod +x ./build.sh && \
-    sync && \
-    ./build.sh
+# download and setup sonar-cube's build-wrapper and sonar-scanner
+COPY sonar.sh ./sonar.sh
+RUN chmod +x ./sonar.sh && sync && ./sonar.sh

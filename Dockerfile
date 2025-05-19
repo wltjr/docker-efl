@@ -109,6 +109,7 @@ RUN apt-get -qq install -y \
 	meson \
 	ninja-build \
 	openssl \
+    psmisc \
 	poppler-data \
 	python3-chardet \
 	python3-colorama \
@@ -122,7 +123,10 @@ RUN apt-get -qq install -y \
 	python3-wheel \
 	rpm \
 	udev \
-	valgrind
+    unzip \
+	valgrind \
+    xorg \
+    xserver-xorg-video-dummy
 
 COPY build.sh ./build.sh
 

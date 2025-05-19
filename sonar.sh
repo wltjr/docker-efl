@@ -7,7 +7,8 @@
 curl -JLO -k https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
 unzip -jq build-wrapper-linux-x86.zip
 mv -v build-wrapper-linux-x86-64 /usr/bin
-mv -v lib*.so /usr/lib/x86_64-linux-gnu
+# needed for use in github actions, fails in /usr/lib/x86_64-linux-gnu
+cp -v lib*.so /usr/bin
 
 # download and unpack sonar-scanner
 curl -JLO -k https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.1.0.4889-linux-x64.zip

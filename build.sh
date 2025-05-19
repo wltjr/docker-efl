@@ -25,19 +25,12 @@ apt-get -qq install -y \
 	gnutls-bin \
 	imagemagick \
 	libasound2-dev \
-	libavahi-client3 \
-	libavahi-client-dev \
-	libavahi-common3 \
-	libavahi-common-dev \
 	libblkid-dev \
 	libbluetooth-dev \
 	libbullet-dev \
 	libc6 \
 	libc6-dev \
 	libc-dev-bin \
-	libcups2 \
-	libcupsfilters2t64 \
-	libcupsimage2 \
 	libdbus-1-dev \
 	libflac-dev \
 	libfontconfig1-dev \
@@ -130,9 +123,7 @@ apt-get -qq install -y \
 	python3-urllib3 \
 	python3-wheel \
 	rpm \
-	texlive-base \
 	udev \
-	unity-greeter-badges \
 	valgrind
 
 # download EFL, unpack into src, compile will take place in build

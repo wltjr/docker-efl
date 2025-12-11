@@ -126,7 +126,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
 	unzip \
 	valgrind \
 	xorg \
-	xserver-xorg-video-dummy
+	xserver-xorg-video-dummy \
+	xserver-xephyr
 
 # download, build, and install efl
 COPY build.sh ./build.sh

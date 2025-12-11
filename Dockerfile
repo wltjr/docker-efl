@@ -8,7 +8,7 @@ ENV EFL_URL="https://download.enlightenment.org/rel/libs/efl/efl-1.28.1.tar.xz"
 RUN apt-get -qq update && apt-get -qq upgrade -y --no-install-recommends
 
 # install packages
-RUN apt-get -qq install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
 	automake \
 	autopoint \
 	build-essential \
@@ -109,7 +109,7 @@ RUN apt-get -qq install -y \
 	meson \
 	ninja-build \
 	openssl \
-    psmisc \
+	psmisc \
 	poppler-data \
 	python3-chardet \
 	python3-colorama \
@@ -123,10 +123,10 @@ RUN apt-get -qq install -y \
 	python3-wheel \
 	rpm \
 	udev \
-    unzip \
+	unzip \
 	valgrind \
-    xorg \
-    xserver-xorg-video-dummy
+	xorg \
+	xserver-xorg-video-dummy
 
 # download, build, and install efl
 COPY build.sh ./build.sh

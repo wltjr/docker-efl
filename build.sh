@@ -79,9 +79,8 @@ meson setup \
 	build \
 	src
 
-# replace SO_REUSEPORT with SO_REUSEADDR
-sed -i -e "s|SO_REUSEPORT|SO_REUSEADDR|" \
-	    src/src/lib/ecore_con/efl_net_server_fd.c
+# Workaround: Replace SO_REUSEPORT with SO_REUSEADDR for CI/docker environments where SO_REUSEPORT is not supported
+find . -type f -exec sed -i 's/SO_REUSEPORT/SO_REUSEADDR/g' {} +
 
 # compile, install, and clean up after build
 ninja -C build -j${CPUC} && ninja -C build install && rm -r /tmp/efl

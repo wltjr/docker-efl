@@ -107,6 +107,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
 	linux-tools-common \
 	lua5.2 \
 	meson \
+	nano \
 	ninja-build \
 	openssl \
 	psmisc \

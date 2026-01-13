@@ -122,6 +122,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	python3-urllib3 \
 	python3-wheel \
 	rpm \
+	systemd \
+	systemd-sysv \
 	udev \
 	unzip \
 	valgrind \
@@ -136,3 +138,11 @@ RUN chmod +x ./build.sh && sync && ./build.sh
 # download and setup sonar-cube's build-wrapper and sonar-scanner
 COPY sonar.sh ./sonar.sh
 RUN chmod +x ./sonar.sh && sync && ./sonar.sh
+
+# systemd
+# Mask unnecessary systemd services that conflict with container environments
+RUN systemctl mask dev-hugepages.mount sys-fs-fuse-connections.mount
+# Create required directories for systemd to run
+VOLUME ["/sys/fs/cgroup", "/run", "/tmp"]
+# Set the default command to start systemd (PID 1)
+CMD ["/sbin/init"]

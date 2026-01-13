@@ -4,11 +4,10 @@ LABEL maintainer="w@wltjr.com"
 
 ENV EFL_URL="https://download.enlightenment.org/rel/libs/efl/efl-1.28.1.tar.xz"
 
-# update base system
-RUN apt-get -qq update && apt-get -qq upgrade -y --no-install-recommends
-
-# install packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
+# update base system & install packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
+	apt-get -qq upgrade -y --no-install-recommends && \
+	apt-get -qq install -y \
 	automake \
 	autopoint \
 	build-essential \

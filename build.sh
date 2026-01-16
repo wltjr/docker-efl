@@ -86,14 +86,14 @@ find . -type f -exec sed -i 's/SO_REUSEPORT/SO_REUSEADDR/g' {} +
 ninja -C build -j${CPUC} && ninja -C build install && rm -r /tmp/efl
 
 # download elogind, unpack into src, compile will take place in build
-curl -L -o /tmp/elogind.txz -L "${ELOGIND_URL}"
+curl -L -o /tmp/elogind.tgz -L "${ELOGIND_URL}"
 mkdir /tmp/elogind
 cd /tmp/elogind
 mkdir build src
 cd src
-tar --strip=1 -xJf /tmp/elogind.txz
+tar --strip=1 -xzf /tmp/elogind.tgz
 cd ../
-rm -v /tmp/elogind.txz
+rm -v /tmp/elogind.tgz
 
 # configure
 meson setup \

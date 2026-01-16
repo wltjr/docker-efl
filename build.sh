@@ -84,3 +84,53 @@ find . -type f -exec sed -i 's/SO_REUSEPORT/SO_REUSEADDR/g' {} +
 
 # compile, install, and clean up after build
 ninja -C build -j${CPUC} && ninja -C build install && rm -r /tmp/efl
+
+# download elogind, unpack into src, compile will take place in build
+curl -L -o /tmp/elogind.txz -L "${ELOGIND_URL}"
+mkdir /tmp/elogind
+cd /tmp/elogind
+mkdir build src
+cd src
+tar --strip=1 -xJf /tmp/elogind.txz
+cd ../
+rm -v /tmp/elogind.txz
+
+# configure
+meson setup \
+	-Dbuildtype=debug \
+	--localstatedir /var/lib \
+	--libdir lib64 \
+	--libexecdir=lib/elogind \
+	--localstatedir=/var \
+	--prefix /usr \
+	--sysconfdir /etc \
+	--wrap-mode nodownload \
+	-Db_lto=false  \
+	-Db_pch=false \
+	-Dwerror=false \
+	-Dudevrulesdir=/usr/lib/udev/rules.d \
+	-Dbashcompletiondir=/usr/share/bash-completion/completions \
+	-Dman=auto \
+	-Dsmack=true \
+	-Dcgroup-controller=openrc \
+	-Ddefault-hierarchy=unified \
+	-Ddefault-kill-user-processes=false \
+	-Dacl=disabled \
+	-Daudit=disabled \
+	-Dhtml=disabled \
+	-Dpam=enabled \
+	-Dpamlibdir=/lib64/security \
+	-Dselinux=disabled \
+	-Dtests=false \
+	-Dutmp=true \
+	-Dmode=release \
+	-Dhalt-path=/sbin/halt \
+	-Dkexec-path=/usr/sbin/kexec \
+	-Dnologin-path=/sbin/nologin \
+	-Dpoweroff-path=/sbin/poweroff \
+	-Dreboot-path=/sbin/reboot \
+	build \
+	src
+
+# compile, install, and clean up after build
+ninja -C build -j${CPUC} && ninja -C build install && rm -r /tmp/elogind

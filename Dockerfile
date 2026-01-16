@@ -3,6 +3,7 @@ FROM ubuntu:noble
 LABEL maintainer="w@wltjr.com"
 
 ENV EFL_URL="https://download.enlightenment.org/rel/libs/efl/efl-1.28.1.tar.xz"
+ENV ELOGIND_URL="https://github.com/elogind/elogind/archive/refs/tags/V255.22.tar.gz"
 
 # update base system & install packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
@@ -20,6 +21,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	doxygen \
 	git \
 	gnutls-bin \
+	gperf \
 	imagemagick \
 	libasound2-dev \
 	libblkid-dev \
@@ -60,6 +62,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	libpam0g-dev \
 	libpaper1 \
 	libpaper-utils \
+	libcap-dev \
 	libpoppler134 \
 	libpoppler-cpp0v5 \
 	libpoppler-cpp-dev \
@@ -115,6 +118,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	python3-colorama \
 	python3-distlib \
 	python3-html5lib \
+	python3-jinja2 \
 	python3-pkg-resources \
 	python3-requests \
 	python3-setuptools \
@@ -129,7 +133,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	xserver-xorg-video-dummy \
 	xserver-xephyr
 
-# download, build, and install efl
+# download, build, and install efl & elogind
 COPY build.sh ./build.sh
 RUN chmod +x ./build.sh && sync && ./build.sh
 

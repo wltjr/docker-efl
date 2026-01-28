@@ -1,8 +1,12 @@
 #!/bin/bash
-# Copyright 2025 William L. Thomson Jr. <w@wltjr.com>
+# Copyright 2026 William L. Thomson Jr. <w@wltjr.com>
 #
 # Distributed under the terms of The GNU Public License v3.0 (GPLv3)
 
+# edit commented version and commit to update the build-wrapper version
+#
+# use analyzer/build-wrapper version 6.77.0.95488
+#
 # download, unpack and relocate build-wrapper-linux-x86-64
 curl -JLO -k https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip
 unzip -jq build-wrapper-linux-x86.zip

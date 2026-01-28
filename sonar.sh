@@ -16,8 +16,9 @@ mv -v lib*.so /usr/bin
 
 # download and unpack sonar-scanner
 sv=8.0.1.6346
-curl -JLO -k https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${sv}-linux-x64.zip
-unzip -q sonar-scanner-cli-${sv}-linux-x64.zip
-echo "export PATH=/sonar-scanner-${sv}-linux-x64/bin:${PATH}" >> /root/.bashrc
+curl -JLO -k https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${sv}-linux-x64.zip \
+	-o sonar-scanner-cli-linux-x64.zip
+unzip -q sonar-scanner-cli-linux-x64.zip
+echo "export PATH=/sonar-scanner-linux-x64/bin:${PATH}" >> /root/.bashrc
 
 rm *.zip

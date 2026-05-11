@@ -6,6 +6,9 @@
 CPUC=$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo)
 PATH="~/.local/bin:${PATH}"
 
+# set default user password
+chpasswd <<< "ubuntu:ubuntu"
+
 # download EFL, unpack into src, compile will take place in build
 curl -L -o /tmp/efl.txz -L "${EFL_URL}"
 mkdir /tmp/efl

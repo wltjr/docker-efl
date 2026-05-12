@@ -127,6 +127,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	python3-urllib3 \
 	python3-wheel \
 	rpm \
+	ubuntu-wallpapers-noble \
 	udev \
 	unzip \
 	valgrind \

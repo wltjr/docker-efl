@@ -19,6 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	curl \
 	dpkg-dev \
 	doxygen \
+	gcovr \
 	git \
 	gnutls-bin \
 	gperf \

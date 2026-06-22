@@ -5,7 +5,7 @@
 
 # edit commented version and commit to update the build-wrapper version
 #
-# use analyzer/build-wrapper version 6.81.1.99296
+# use analyzer/build-wrapper version 6.82.0.99990
 #
 # download, unpack and relocate build-wrapper-linux-x86-64
 curl -JLO -k https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip

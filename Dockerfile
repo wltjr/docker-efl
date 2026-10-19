@@ -131,6 +131,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 	udev \
 	unzip \
 	valgrind \
+	xdotool \
 	xorg \
 	xserver-xorg-video-dummy \
 	xserver-xephyr
